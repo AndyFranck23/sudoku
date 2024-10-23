@@ -1,12 +1,12 @@
 {
-  "name": "modelreactvite",
+  "name": "sudoku",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "homepage": "https://andyfranck23.github.io/sudoku",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d docs",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
