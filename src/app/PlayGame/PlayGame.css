@@ -1,0 +1,238 @@
+.header {
+    display: flex;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+.header button {
+    background-color: transparent;
+    border: none;
+    margin-inline: 0.5vw;
+    font-size: 1.5vw;
+}
+
+.header p {
+    font-weight: 600;
+}
+
+.header span {
+    font-weight: 900;
+    color: rgb(83, 83, 247);
+}
+
+.header .btnTest {
+    display: flex;
+}
+
+.features {
+    display: flex;
+    height: 5vh;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10px;
+    color: rgba(51, 51, 51, 0.575);
+    font-size: 1.5vw;
+}
+
+.features .props p {
+    margin: 0;
+    padding: 0;
+}
+
+.features .btnPause {
+    display: flex;
+    align-items: center;
+}
+
+.features .btnPause button {
+    border: none;
+    margin-left: 10px;
+    padding: 2px 5px;
+    border-radius: 50%;
+}
+
+.btnSudoku {
+    border: 1px solid rgba(0, 0, 0, 0.205);
+    background-color: rgb(255, 249, 237);
+    width: 23px;
+    height: 23px;
+    text-align: center;
+    outline: none;
+    font-size: 20px;
+    font-weight: 500;
+    color: rgb(95, 95, 95);
+}
+
+.btnSudoku.userInput {
+    color: rgba(55, 55, 214, 0.849);
+}
+
+.wrongInput {
+    color: red;
+}
+
+.btnSudoku input:focus {
+    outline: none;
+}
+
+.btnSudoku.selectValue {
+    background-color: rgba(236, 221, 137, 0.856);
+}
+
+.btnSudoku.select-lig-col {
+    background-color: rgba(236, 221, 137, 0.575);
+}
+
+.tableau {
+    padding: 0;
+    border-right: 2px solid rgba(90, 90, 90, 0.884);
+    border-bottom: 2px solid rgba(90, 90, 90, 0.884);
+    display: table;
+    margin: auto;
+    margin-top: 30px;
+    /* border-top: 2px solid rgba(90, 90, 90, 0.884); */
+}
+
+.btnSudoku:nth-child(3n+1) {
+    border-left: 2px solid rgba(90, 90, 90, 0.884);
+}
+
+.sudoku-row {
+    display: flex;
+}
+
+.sudoku-row:nth-child(3n+1) .btnSudoku {
+    border-top: 2px solid rgba(90, 90, 90, 0.884);
+}
+
+.btnSudoku:hover {
+    background-color: rgba(116, 116, 116, 0.164);
+}
+
+.nombre {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.nombre button {
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+    color: blue;
+}
+
+.loseGame {
+    position: absolute;
+    background-color: rgb(255, 250, 235);
+    width: 35vw;
+    border-radius: 20px;
+    height: 32vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loseGame .loseTitle {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 5px 0px;
+}
+
+.loseGame .message {
+    font-size: 13px;
+    color: rgba(51, 51, 51, 0.575);
+    padding: 0px 20px;
+}
+
+.loseGame button {
+    border: none;
+    width: 28vw;
+    height: 30px;
+    margin-bottom: 5px;
+    border-radius: 50px;
+    font-weight: 600;
+    background-color: rgb(243, 227, 183);
+    margin: 0;
+}
+
+.loseGame button:hover {
+    transition: 0.5s;
+    background-color: rgba(99, 99, 99, 0.253);
+}
+
+.loseGame .secondChance {
+    color: rgba(41, 41, 41, 0.692);
+    margin-bottom: 7px;
+}
+
+.loseGame .newGame {
+    color: blue;
+    background-color: transparent;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.541);
+    z-index: 1000;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+}
+
+
+@media screen and (max-width:600px) and (min-width:100px) {
+    .header button {
+        font-size: 3vw;
+    }
+
+    .features .props p {
+        font-size: 3vw;
+    }
+
+    .features .btnPause p {
+        font-size: 3vw;
+    }
+
+    .loseGame {
+        width: 200px;
+    }
+
+    .loseGame button {
+        width: 170px;
+    }
+}
+
+@media screen and (max-width:280px) and (min-width:100px) {
+    .btnSudoku {
+        width: 7vw;
+        height: 7vw;
+        font-size: 6vw;
+    }
+
+    .features .btnPause button {
+        border: none;
+        margin-left: 10px;
+        padding: 0.5vh 1vw;
+        font-size: 4vw;
+    }
+
+    .tableau {
+        margin-top: 7vh;
+    }
+
+    .loseGame {
+        width: 200px;
+    }
+
+    .loseGame button {
+        width: 170px;
+    }
+}

@@ -1,0 +1,42 @@
+.PauseGame{
+    position: absolute;
+    background-color: rgb(253, 245, 222);
+    width: 40vw;
+    border-radius: 20px;
+    height: 55vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black ;
+    font-size: 12px;
+}
+
+.caract{
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.titlePause{
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0px 0px 30px 0px
+}
+
+.propsPause p{
+    margin: 0;
+    padding: 0;
+}
+
+.PauseGame button{
+    border: none;
+    width: 30vw;
+    height: 35px;
+    border-radius: 30px;
+    background-color: rgb(71, 71, 255);
+    color: white;
+    font-weight: 600;
+}
