@@ -7,7 +7,9 @@ export const Parametre = () => {
     return (
         <div className="header">
             {/* <button>Retour</button> */}
-            <Title />
+            <div className="titre2">
+                <legend>Sudoku<span style={{ color: 'rgb(83, 83, 247)', fontWeight: '700' }}>.</span>com</legend>
+            </div>
             {/* <div className="btnTest">
                 <button>Thème</button>
                 <button>Paramètre</button>
@@ -16,7 +18,7 @@ export const Parametre = () => {
     )
 }
 
-export const Pause = ({ Time, Pause, click }) => {
+export const Pause = ({ Time, Pause, click, newPartie }) => {
     return (
         <div className='PauseGame' style={{ display: Pause, zIndex: 1000 }}>
             <div>
@@ -37,7 +39,8 @@ export const Pause = ({ Time, Pause, click }) => {
                     <p>Events</p>
                     <p>Don't forget to participate in events and earn medals!</p>
                 </div>
-                <button onClick={click}>Reprendre</button>
+                <button onClick={click} style={{ marginBottom: '10px' }}>Reprendre</button>
+                <button onClick={newPartie} style={{ background: "rgba(99, 99, 99, 0.253)", color: "blue" }}>Nouvelle Partie</button>
             </div>
         </div>
     )

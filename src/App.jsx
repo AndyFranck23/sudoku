@@ -19,15 +19,15 @@ const Index = () => {
       <div>
         <div className="container">
           <div className="param">
-            <MyButton title={'Coupe'} Color={'back'} className={"pa"} />
-            <MyButton title={'Paramétre'} Color={'back'} className={"pa"} />
+            {/* <MyButton title={'Coupe'} Color={'back'} className={"pa"} />
+            <MyButton title={'Paramétre'} Color={'back'} className={"pa"} /> */}
           </div>
           <Calendrier />
           <Title />
-          <MyButton BackgroundColor="rgb(83, 83, 247)" Color="white" title={"Continuer la partie"} className={"btn"} />
-          <MyButton handleClick={handleNewPartie} BackgroundColor="white" Color="rgb(83, 83, 247)" title={"Nouvelle partie"} className={"btn"} />
+          {/* <MyButton BackgroundColor="rgb(83, 83, 247)" Color="white" title={"Continuer la partie"} className={"btn"} /> */}
+          <MyButton handleClick={handleNewPartie} BackgroundColor="rgb(83, 83, 247)" Color="white" title={"Nouvelle partie"} className={"btn"} />
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   )

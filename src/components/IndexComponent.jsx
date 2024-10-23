@@ -30,7 +30,7 @@ export const Calendrier = () => {
             <div className="date">
                 <p>9 septembre</p>
             </div>
-            <div className="btnJouer">
+            <div className="btnJouer" style={{ opacity: '0.5' }}>
                 <button>Jouer</button>
             </div>
         </div>

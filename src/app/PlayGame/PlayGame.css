@@ -1,4 +1,4 @@
-.header {
+/* .header {
     display: flex;
     height: 40px;
     align-items: center;
@@ -23,6 +23,15 @@
 
 .header .btnTest {
     display: flex;
+} */
+
+
+.container2 {
+    width: 45vw;
+    background-color: white;
+    height: 80vh;
+    padding-bottom: 30px;
+    margin: auto;
 }
 
 .features {
@@ -187,8 +196,20 @@
     left: 0;
 }
 
+.titre2 {
+    padding: 5vh 0;
+    font-size: 4vh;
+    padding-bottom: 6vh;
+}
+
 
 @media screen and (max-width:600px) and (min-width:100px) {
+    .container2 {
+        width: 100vw;
+        height: 100vh;
+        margin: auto;
+    }
+
     .header button {
         font-size: 3vw;
     }
@@ -208,12 +229,22 @@
     .loseGame button {
         width: 170px;
     }
+
+    .nombre {
+        margin-top: 8vh;
+    }
+
+    .titre2 {
+        padding: 5vh 0;
+        font-size: 4vh;
+        padding-bottom: 7vh;
+    }
 }
 
 @media screen and (max-width:280px) and (min-width:100px) {
     .btnSudoku {
-        width: 7vw;
-        height: 7vw;
+        width: 8vw;
+        height: 8vw;
         font-size: 6vw;
     }
 
@@ -225,7 +256,7 @@
     }
 
     .tableau {
-        margin-top: 7vh;
+        margin-top: 8vh;
     }
 
     .loseGame {

@@ -52,6 +52,7 @@ const PlayGame2 = () => {
         setFocus(false)
         setScore(0)
         setIsActive(!isActive)
+        setPause('none')
     }
 
     // supprime les boutons de chiffres si le chiffre est complet
@@ -153,11 +154,11 @@ const PlayGame2 = () => {
 
     return (
         <>
-            <div className="container">
+            <div className="container2">
                 <Parametre />
                 <div className="features">
                     <div className="overlay" style={{ display: pause, zIndex: 500 }} onClick={handlePause}></div>
-                    <Pause Time={time} Pause={pause} click={handlePause} />
+                    <Pause newPartie={newGame} Time={time} Pause={pause} click={handlePause} />
                     <div className="props">
                         <p>Difficulté</p>
                         <p style={{ fontWeight: 700 }}>Par défaut</p>
@@ -177,8 +178,8 @@ const PlayGame2 = () => {
                         </div>
                         <button onClick={() => toggle()}><i className='fa fa-pause' style={{ fontWeight: 400, padding: "2px", fontSize: "15px" }}></i></button>
                     </div>
-                    <Message style={{ display: falseValue.length >= 3 ? 'block' : 'none', zIndex: 1000 }} newGame={() => newGame()} />
-                    <Winner score={score} time={time} style={{ display: message == "Bravo !!!" ? 'block' : 'none', zIndex: 1000 }} newGame={() => newGame()} />
+                    <Message style={{ display: falseValue.length >= 3 ? 'block' : 'none', zIndex: 1000 }} newGame={newGame} />
+                    <Winner score={score} time={time} style={{ display: message == "Bravo !!!" ? 'block' : 'none', zIndex: 1000 }} newGame={newGame} />
                 </div>
                 <div className="tableau">
                     {gridCopy.map((ligne, ligIndex) => (
