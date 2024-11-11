@@ -8,14 +8,17 @@ const PlayGame2 = () => {
     const [focus, setFocus] = useState(false)
     const [selectValue, setSelectValue] = useState({ value: null, lig: null, col: null })
     const [button, setButton] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9])
-    const [trueValue, setTrueValue] = useState([])
-    const [falseValue, setFalseValue] = useState([])
+    const [valueType, setValueType] = useState([])
     const [message, setMessage] = useState('')
     const [score, setScore] = useState(0)
     const [chance, setChance] = useState(3)
     const [time, setTime] = useState(0)
     const [isActive, setIsActive] = useState(true)
     const [pause, setPause] = useState('none')
+    const [falseValue, setFalseValue] = useState(0)
+    const [index, setIndex] = useState(0)
+    const [position, setPosition] = useState(index)
+
 
     const handlePause = () => {
         setIsActive(!isActive)
@@ -44,14 +47,15 @@ const PlayGame2 = () => {
         setGridCopy(SudokuCopy(tabSudoku()))
         setButton([1, 2, 3, 4, 5, 6, 7, 8, 9])
         setSelectValue({ value: null, lig: null, col: null })
-        setTrueValue([])
+        setValueType([])
         setMessage('')
-        setFalseValue([])
         setTime(0)
         setFocus(false)
         setScore(0)
         setIsActive(!isActive)
         setPause('none')
+        setChance(3)
+        setFalseValue(0)
     }
 
     // supprime les boutons de chiffres si le chiffre est complet
@@ -86,31 +90,25 @@ const PlayGame2 = () => {
         }
     }
 
-    const addTrueValue = (tabValue) => {
+    const addValueType = (tabValue, veriter, value) => {
         let element = {
             lig: selectValue.lig,
             col: selectValue.col,
+            val: value,
+            id: index,
+            veriter: veriter,
         }
         let tab = tabValue
         tab.push(element)
-        setTrueValue(tab)
-    }
-
-    const addFalseValue = (value, tabValue) => {
-        let element = {
-            lig: selectValue.lig,
-            col: selectValue.col,
-            value: value
-        }
-        let tab = tabValue
-        tab.push(element)
-        setFalseValue(tab)
+        setValueType(tab)
+        setIndex(index + 1)
+        setPosition(index)
     }
 
     const testValue = (lig, col, tabValue) => {
         let out = false
         for (let i = 0; i < tabValue.length; i++) {
-            if (tabValue[i].lig == lig && tabValue[i].col == col) {
+            if (tabValue[i].lig == lig && tabValue[i].col == col && tabValue[i].veriter == true) {
                 out = true
             }
         }
@@ -120,7 +118,7 @@ const PlayGame2 = () => {
     const testValue2 = (lig, col, tabValue) => {
         let out = false
         for (let i = 0; i < tabValue.length; i++) {
-            if (tabValue[i].lig == lig && tabValue[i].col == col && gridCopy[lig][col] != grid[lig][col]) {
+            if (tabValue[i].lig == lig && tabValue[i].col == col && gridCopy[lig][col] != grid[lig][col] && tabValue[i].veriter == false) {
                 out = true
             }
         }
@@ -137,24 +135,26 @@ const PlayGame2 = () => {
     }
 
     const addValue = (lig, col, value) => {
-        if (lig != null) {
+        if (lig != null && value != undefined) {
             if (selectValue.value == '' || value == grid[lig][col] || gridCopy[lig][col] != grid[lig][col]) {
                 handleClick(value, lig, col)
                 let newGridCopy = gridCopy
                 newGridCopy[lig][col] = value
+                console.log(button)
                 if (value == grid[lig][col]) {
                     testWin()
                     setScore(score + 100)
-                    addTrueValue(trueValue)
+                    addValueType(valueType, true, value)
                     setGridCopy(newGridCopy)
                 } else {
                     setScore(score - 10)
-                    addFalseValue(value, falseValue)
-                    if (falseValue.length >= chance) {
+                    addValueType(valueType, false, value)
+                    setFalseValue(falseValue + 1)
+                    if (falseValue >= chance) {
                         setMessage("Partie terminer")
                     }
                 }
-                if (falseValue.length >= chance) {
+                if (falseValue >= chance) {
                     setIsActive(!isActive)
                 }
             }
@@ -166,11 +166,29 @@ const PlayGame2 = () => {
         handlePause()
     }
 
+    const btnRetour = () => {
+        if (valueType.length > 0) {
+            let lig = valueType[position].lig
+            let col = valueType[position].col
+            let newGridCopy = gridCopy
+            newGridCopy[lig][col] = ''
+            setGridCopy(newGridCopy)
+            setPosition(position - 1)
+            setIndex(valueType.length - 1)
+            let tb = button
+            tb[valueType[position].val - 1] = valueType[position].val
+            setButton(tb)
+            let tab = valueType
+            tab.pop()
+            setValueType(tab)
+        }
+    }
+
     return (
         <div className='h-screen bg-bgColor flex items-center justify-center'>
             <div className="text-center text-colorTable flex justify-center dis2:h-full" style={{ fontWeight: '400' }}>
                 <div className='dis2:w-[450px] bg-white py-3 w-screen'>
-                    <div className="flex justify-around mb-10">
+                    <div className="flex justify-around mb-5">
                         <div className="text-center font-bold text-xl">
                             <p>Sudoku<span className='font-bold text-blue-500'>.</span>com</p>
                         </div>
@@ -186,7 +204,7 @@ const PlayGame2 = () => {
                         </div>
                         <div className="">
                             <p className="text-xs">Erreurs</p>
-                            <p className='font-bold'>{falseValue.length}/{chance}</p>
+                            <p className='font-bold'>{falseValue}/{chance}</p>
                         </div>
                         <div className="">
                             <p className="text-xs">Score</p>
@@ -201,7 +219,7 @@ const PlayGame2 = () => {
                         </div>
                     </div>
                     <Pause Time={time} Pause={pause} click={handlePause} newPartie={newGame} />
-                    <Message error={falseValue.length} click={newGame} luck={moreLuck} display={falseValue.length >= chance ? "block" : "none"} />
+                    <Message error={falseValue} click={newGame} luck={moreLuck} display={falseValue >= chance ? "block" : "none"} />
                     <Winner time={time} score={score} click={newGame} display={message == "Bravo !!!" ? "block" : "none"} />
                     <div className="flex justify-center">
                         <div className='border border-solid border-2'>
@@ -224,8 +242,8 @@ const PlayGame2 = () => {
                                                     ${ligIndex == 2 || ligIndex == 5 ? "border-b-2 border-b-black" : ""}
                                                     text-xl opacity-80 w-[30px] h-[30px] dis:w-[22px] dis:h-[22px] bg-bgTable outline-none text-center border border-solid border-borderTable hover:bg-bgHover focus:outline
                                                     ${valueTest && focus ? "bg-selectValue" : (col || lig) && focus ? "bg-selectLigCol" : ""} 
-                                                    ${testValue(ligIndex, colIndex, trueValue) ? "text-userInput" : ""}
-                                                    ${testValue2(ligIndex, colIndex, falseValue) ? "text-wrongInput" : ""}
+                                                    ${testValue(ligIndex, colIndex, valueType) ? "text-userInput" : ""}
+                                                    ${testValue2(ligIndex, colIndex, valueType) ? "text-wrongInput" : ""}
                                                 `}
                                             />
                                         )
@@ -234,14 +252,31 @@ const PlayGame2 = () => {
                             ))}
                         </div>
                     </div>
-                    <div className="flex justify-between mt-20">
+                    <div className="flex justify-around items-center dis:my-7 my-5">
+                        <div className="p-0 m-0">
+                            <button onClick={btnRetour} className='border-none bg-transparent text-colorTable'>
+                                <img src="./icons64.png" className='h-[30px] w-[30px] opacity-75' /><br />
+                                <p className='font-bold text-colorTable text-xs ps:text-sm' >Annuler</p>
+                            </button>
+                        </div>
+                        {/* <div className="">
+                            <button onClick={btnRetour}>Effacer</button>
+                        </div>
+                        <div className="">
+                            <button onClick={btnRetour}>Note</button>
+                        </div>
+                        <div className="">
+                            <button onClick={btnRetour}>Indice</button>
+                        </div> */}
+                    </div>
+                    <div className="flex justify-between">
                         {
                             button.map((buttonValue, index) => {
                                 lastNumber(index, buttonValue)
                                 return (
                                     <button
                                         key={index}
-                                        className='border-none bg-transparent text-blue-500 text-xl p-2'
+                                        className='border-none bg-transparent text-blue-500 text-xl px-2'
                                         onClick={() => addValue(selectValue.lig, selectValue.col, buttonValue)}
                                     >
                                         {buttonValue}
