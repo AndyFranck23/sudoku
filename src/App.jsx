@@ -20,7 +20,7 @@ const Home = () => {
 
   return (
     <div className='text-xs flex justify-center items-center h-screen w-screen bg-bgColor text-gray'>
-      <div className="bg-white h-screen dis:w-screen w-[400px] items-center flex justify-center">
+      <div className="shadow-xl bg-white h-screen dis:w-screen w-[400px] items-center flex justify-center">
         <div className=" pt-5 px-5">
           {/* option */}
           {/* <div className="flex justify-between mb-5">

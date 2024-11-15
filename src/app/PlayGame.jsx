@@ -190,7 +190,7 @@ const PlayGame2 = () => {
 
     return (
         <div className='h-screen bg-bgColor flex items-center justify-center'>
-            <div className="text-center text-colorTable flex justify-center dis2:h-full" style={{ fontWeight: '400' }}>
+            <div className="shadow-xl text-center text-colorTable flex justify-center dis2:h-full" style={{ fontWeight: '400' }}>
                 <div className='dis2:w-[450px] bg-white py-3 w-screen'>
                     <div className="flex justify-around mb-5">
                         <div className="text-center font-bold text-xl">
@@ -230,9 +230,11 @@ const PlayGame2 = () => {
                             {gridCopy.map((ligne, ligIndex) => (
                                 <div key={ligIndex} className="flex">
                                     {ligne.map((value, colIndex) => {
-                                        let valueTest = value == selectValue.value && value !== ''
                                         let lig = ligIndex == selectValue.lig
                                         let col = colIndex == selectValue.col
+                                        let caseX = colIndex >= (parseInt(selectValue.col / 3) * 3) && colIndex < ((parseInt(selectValue.col / 3) * 3) + 3)
+                                        let caseY = ligIndex >= (parseInt(selectValue.lig / 3) * 3) && ligIndex < ((parseInt(selectValue.lig / 3) * 3) + 3)
+                                        let valueTest = value == selectValue.value && value !== '' && (col && lig) == false
                                         return (
                                             <input
                                                 readOnly
@@ -244,8 +246,8 @@ const PlayGame2 = () => {
                                                 className={`
                                                     ${colIndex == 2 || colIndex == 5 ? "border-r-2 border-r-black" : ""}
                                                     ${ligIndex == 2 || ligIndex == 5 ? "border-b-2 border-b-black" : ""}
-                                                    text-xl opacity-80 w-[30px] h-[30px] dis:w-[22px] dis:h-[22px] bg-bgTable outline-none text-center border border-solid border-borderTable hover:bg-bgHover focus:outline
-                                                    ${valueTest && focus ? "bg-selectValue" : (col || lig) && focus ? "bg-selectLigCol" : ""} 
+                                                    text-xl opacity-80 w-[30px] h-[30px] dis:w-[22px] dis:h-[22px] outline-none text-center border border-solid border-borderTable hover:bg-bgHover focus:outline
+                                                    ${(col && lig) && focus ? "bg-blue2" : valueTest && focus ? "bg-selectValue" : ((caseX && caseY) || (col || lig)) && focus ? "bg-selectLigCol" : ""} 
                                                     ${testValue(ligIndex, colIndex, valueType) ? "text-userInput" : ""}
                                                     ${testValue2(ligIndex, colIndex, valueType) ? "text-wrongInput" : ""}
                                                 `}
