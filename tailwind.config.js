@@ -16,7 +16,7 @@ export default {
         "bgTable": "rgb(255, 249, 237)",
         "colorTable": "rgb(95, 95, 95)",
         "selectValue": "#749cff94",
-        "selectLigCol": "#275ce418",
+        "selectLigCol": "#83aeff41",
         "bgHover": "rgba(116, 116, 116, 0.164)",
         "userInput": "rgba(55, 55, 214, 0.849)",
         "wrongInput": "rgb(255,0,0)",
