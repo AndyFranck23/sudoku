@@ -15,7 +15,7 @@ export default {
         "borderTable": "rgba(0, 0, 0, 0.205)",
         "bgTable": "rgb(255, 249, 237)",
         "colorTable": "rgb(95, 95, 95)",
-        "selectValue": "#9fa5b38a",
+        "selectValue": "#749cff94",
         "selectLigCol": "#275ce418",
         "bgHover": "rgba(116, 116, 116, 0.164)",
         "userInput": "rgba(55, 55, 214, 0.849)",
@@ -23,7 +23,7 @@ export default {
         "pauseGame": "rgb(253, 245, 222)",
         "secondLuck": "rgba(41, 41, 41, 0.692)",
         "bgSecondLuck": "rgb(255, 255, 255)",
-        "blue2": "#2654c938"
+        "blue2": "#66bbf391"
       },
       screens: {
         "ps": "350px",
