@@ -16,8 +16,7 @@ const PlayGame2 = () => {
     const [isActive, setIsActive] = useState(true)
     const [pause, setPause] = useState('none')
     const [falseValue, setFalseValue] = useState(0)
-    const [index, setIndex] = useState(0)
-    const [position, setPosition] = useState(index)
+    const [position, setPosition] = useState(-1)
 
 
     const handlePause = () => {
@@ -56,6 +55,7 @@ const PlayGame2 = () => {
         setPause('none')
         setChance(3)
         setFalseValue(0)
+        setPosition(-1)
     }
 
     // supprime les boutons de chiffres si le chiffre est complet
@@ -95,14 +95,12 @@ const PlayGame2 = () => {
             lig: selectValue.lig,
             col: selectValue.col,
             val: value,
-            id: index,
             veriter: veriter,
         }
         let tab = tabValue
         tab.push(element)
         setValueType(tab)
-        setIndex(index + 1)
-        setPosition(index)
+        setPosition(position + 1)
     }
 
     const testValue = (lig, col, tabValue) => {
@@ -140,7 +138,6 @@ const PlayGame2 = () => {
                 handleClick(value, lig, col)
                 let newGridCopy = gridCopy
                 newGridCopy[lig][col] = value
-                console.log(button)
                 if (value == grid[lig][col]) {
                     testWin()
                     setScore(score + 100)
@@ -150,12 +147,10 @@ const PlayGame2 = () => {
                     setScore(score - 10)
                     addValueType(valueType, false, value)
                     setFalseValue(falseValue + 1)
-                    if (falseValue >= chance) {
+                    if (falseValue >= chance - 1) {
+                        setIsActive(!isActive)
                         setMessage("Partie terminer")
                     }
-                }
-                if (falseValue >= chance) {
-                    setIsActive(!isActive)
                 }
             }
         }
@@ -167,14 +162,23 @@ const PlayGame2 = () => {
     }
 
     const btnRetour = () => {
-        if (valueType.length > 0) {
+        if (position >= 0) {
             let lig = valueType[position].lig
             let col = valueType[position].col
+            let ver = valueType[position].veriter
+            if (ver == true) {
+                setScore(score - 100)
+            } else {
+                setScore(score + 10)
+            }
             let newGridCopy = gridCopy
-            newGridCopy[lig][col] = ''
+            if (position > 0 && lig == valueType[position - 1].lig && col == valueType[position - 1].col) {
+                newGridCopy[lig][col] = valueType[position - 1].val
+            } else {
+                newGridCopy[lig][col] = ''
+            }
             setGridCopy(newGridCopy)
             setPosition(position - 1)
-            setIndex(valueType.length - 1)
             let tb = button
             tb[valueType[position].val - 1] = valueType[position].val
             setButton(tb)
