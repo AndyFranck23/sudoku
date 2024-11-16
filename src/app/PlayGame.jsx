@@ -246,8 +246,8 @@ const PlayGame2 = () => {
                                                 className={`
                                                     ${colIndex == 2 || colIndex == 5 ? "border-r-2 border-r-black" : ""}
                                                     ${ligIndex == 2 || ligIndex == 5 ? "border-b-2 border-b-black" : ""}
-                                                    text-xl opacity-80 w-[30px] h-[30px] dis:w-[22px] dis:h-[22px] outline-none text-center border border-solid border-borderTable hover:bg-bgHover focus:outline
-                                                    ${(col && lig) && focus ? "bg-blue2" : valueTest && focus ? "bg-selectValue" : ((caseX && caseY) || (col || lig)) && focus ? "bg-selectLigCol" : ""} 
+                                                    text-2xl opacity-80 w-[31px] h-[31px] dis:w-[22px] dis:h-[22px] outline-none text-center border border-solid border-borderTable focus:outline
+                                                    ${(col && lig) && focus ? "bg-blue-300" : valueTest && focus ? "bg-selectValue" : ((caseX && caseY) || (col || lig)) && focus ? "bg-selectLigCol" : ""} 
                                                     ${testValue(ligIndex, colIndex, valueType) ? "text-userInput" : ""}
                                                     ${testValue2(ligIndex, colIndex, valueType) ? "text-wrongInput" : ""}
                                                 `}
@@ -282,7 +282,7 @@ const PlayGame2 = () => {
                                 return (
                                     <button
                                         key={index}
-                                        className='border-none bg-transparent text-blue-500 text-xl px-2'
+                                        className='border-none bg-transparent text-blue-500 text-2xl px-2'
                                         onClick={() => addValue(selectValue.lig, selectValue.col, buttonValue)}
                                     >
                                         {buttonValue}
