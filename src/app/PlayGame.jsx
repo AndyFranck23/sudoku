@@ -248,7 +248,7 @@ const PlayGame2 = () => {
                                                     ${ligIndex == 2 || ligIndex == 5 ? "border-b-2 border-b-black" : ""}
                                                     text-2xl opacity-80 w-[31px] h-[31px] dis:w-[22px] dis:h-[22px] outline-none text-center border border-solid border-borderTable focus:outline
                                                     ${(col && lig) && focus ? "bg-blue-300" : valueTest && focus ? "bg-selectValue" : ((caseX && caseY) || (col || lig)) && focus ? "bg-selectLigCol" : ""} 
-                                                    ${testValue(ligIndex, colIndex, valueType) ? "text-userInput" : ""}
+                                                    ${testValue(ligIndex, colIndex, valueType) ? "text-blue-500" : ""}
                                                     ${testValue2(ligIndex, colIndex, valueType) ? "text-wrongInput" : ""}
                                                 `}
                                             />
